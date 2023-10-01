@@ -5,4 +5,4 @@
 [node name="GameLevel" type="Node2D"]
 
 [node name="PlayerRoger" parent="." instance=ExtResource("1_mmnsa")]
-position = Vector2(533, 325)
+position = Vector2(84, 66)
