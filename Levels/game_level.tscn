@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwblochqvmvom"]
+
+[ext_resource type="PackedScene" uid="uid://qyu0k7l1o3ip" path="res://Player/Roger/player_roger.tscn" id="1_mmnsa"]
+
+[node name="GameLevel" type="Node2D"]
+
+[node name="PlayerRoger" parent="." instance=ExtResource("1_mmnsa")]
+position = Vector2(533, 325)
