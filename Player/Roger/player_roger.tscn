@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://qyu0k7l1o3ip"]
+
+[ext_resource type="Script" path="res://Player/Roger/player_roger.cs" id="1_tos58"]
+[ext_resource type="Texture2D" uid="uid://upw11gt7exme" path="res://Assets/Characters/merging test.png" id="1_xkuir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hs11"]
+size = Vector2(10, 22)
+
+[node name="PlayerRoger" type="CharacterBody2D"]
+script = ExtResource("1_tos58")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xkuir")
+hframes = 6
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_0hs11")
