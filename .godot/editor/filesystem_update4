@@ -1,2 +1,3 @@
-res://Player/Roger/player_roger.tscn
 res://Levels/game_level.tscn
+res://Player/Roger/player_roger.tscn
+res://Player/Roger/player_roger.cs

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "kkMuqrW2lVZdw9j+8fGmzJz0xs1dRZPrBBvk52US98wh9b6UBZitgmVbLVK1RQrE45QS8oniAzLGn6trovkxEA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sebas\\Documents\\Godot\\CustomZombie\\Custom Zombie.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sebas\\.nuget\\packages\\godot.sourcegenerators\\4.1.1\\godot.sourcegenerators.4.1.1.nupkg.sha512",
+    "C:\\Users\\sebas\\.nuget\\packages\\godotsharp\\4.1.1\\godotsharp.4.1.1.nupkg.sha512",
+    "C:\\Users\\sebas\\.nuget\\packages\\godotsharpeditor\\4.1.1\\godotsharpeditor.4.1.1.nupkg.sha512",
+    "C:\\Users\\sebas\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.20\\microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\sebas\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.20\\microsoft.windowsdesktop.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\sebas\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.20\\microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}
