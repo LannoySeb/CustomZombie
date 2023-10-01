@@ -1,3 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1696161370
+::res://::1696161562
 icon.svg::CompressedTexture2D::9222588437101135020::1696161366::1696161371::1::::<><>::
+README.md::TextFile::-1::1696161500::0::1::::<><>::
+::res://Assets/::1696161692
+::res://Assets/Characters/::1696161675
+roger_walking_left.png::CompressedTexture2D::9008341050737337421::1696161652::1696161717::1::::<><>::
+roger_walking_right.png::CompressedTexture2D::8398915154840722163::1696161652::1696161717::1::::<><>::
+::res://Assets/TilesSets/::1696161713
+Dirt-tiles.png::CompressedTexture2D::6255229755728233859::1692205472::1696161717::1::::<><>::
+Water-grass.png::CompressedTexture2D::3428524132531251018::1692206903::1696161717::1::::<><>::
