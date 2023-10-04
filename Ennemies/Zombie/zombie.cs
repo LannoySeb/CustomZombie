@@ -73,7 +73,10 @@ public partial class zombie : CharacterBody2D
     } 
 
     private void MakePath(){
-        NavAgent.TargetPosition = Player.GlobalPosition;
+
+        if(Player!= null){
+            NavAgent.TargetPosition = Player.GlobalPosition;
+        }
     }
 
     private void OnTimerTimeout(){

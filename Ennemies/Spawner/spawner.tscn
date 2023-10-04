@@ -1,11 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmlo4jfc4hxp6"]
 
-[ext_resource type="Script" path="res://Ennemies/Spawner.cs" id="1_8cr01"]
+[ext_resource type="Script" path="res://Ennemies/Spawner/Spawner.cs" id="1_oxm8h"]
 
-[node name="Spawner" type="Node2D" node_paths=PackedStringArray("ZombieType")]
+[node name="Spawner" type="Node2D"]
 visible = false
-script = ExtResource("1_8cr01")
-ZombieType = NodePath("")
+script = ExtResource("1_oxm8h")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
