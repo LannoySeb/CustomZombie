@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwblochqvmvom"]
+[gd_scene load_steps=8 format=3 uid="uid://dwblochqvmvom"]
 
 [ext_resource type="PackedScene" uid="uid://qyu0k7l1o3ip" path="res://Player/Roger/player_roger.tscn" id="1_mmnsa"]
 [ext_resource type="Texture2D" uid="uid://cvecyqr2tle3t" path="res://Assets/TilesSets/Dirt-tiles.png" id="2_doyvv"]
 [ext_resource type="Texture2D" uid="uid://bo32j6bbvaxjm" path="res://Assets/TilesSets/Water-grass.png" id="3_78tlk"]
+[ext_resource type="PackedScene" uid="uid://nkpa1dmvl16e" path="res://Ennemies/Zombie/zombie.tscn" id="4_l2ob4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4nsym"]
 texture = ExtResource("2_doyvv")
@@ -146,3 +147,6 @@ layer_1/tile_data = PackedInt32Array(65538, 0, 1, 65535, 1, 2, 131071, 1, 2, 196
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(84, 66)
+
+[node name="Zombie" parent="." instance=ExtResource("4_l2ob4")]
+position = Vector2(38, 111)
