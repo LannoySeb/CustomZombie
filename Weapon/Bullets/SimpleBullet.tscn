@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bywdt0rbjdgyp"]
+
+[ext_resource type="Texture2D" uid="uid://dobet3ohidjb8" path="res://Assets/Weapon/Bullets/Simple_bullet.png" id="1_aqplw"]
+[ext_resource type="Script" path="res://Weapon/Bullets/SimpleBullet.cs" id="1_xwflt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0a517"]
+radius = 3.0
+height = 10.0
+
+[node name="SimpleBullet" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_xwflt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aqplw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0a517")
+
+[connection signal="body_entered" from="." to="." method="OnProjectileBodyEntered"]
