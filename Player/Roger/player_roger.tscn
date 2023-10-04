@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cc3qpyge8gkst" path="res://Assets/Characters/Elmuth-Sheett.png" id="2_7b5fm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hs11"]
-size = Vector2(17, 23)
+size = Vector2(17, 18)
 
 [sub_resource type="Animation" id="Animation_i6sky"]
 length = 0.001
@@ -236,6 +236,8 @@ states/Walk/position = Vector2(502, 100)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_oj6ea"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_jbf7r"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cphme")]
 
 [node name="PlayerRoger" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_tos58")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -244,7 +246,7 @@ hframes = 4
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
+position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_0hs11")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

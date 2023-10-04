@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://nkpa1dmvl16e"]
+[gd_scene load_steps=28 format=3 uid="uid://nkpa1dmvl16e"]
 
 [ext_resource type="Texture2D" uid="uid://rytfb5owadgf" path="res://Assets/Ennemies/zombie.png" id="1_dsrg0"]
+[ext_resource type="Script" path="res://Ennemies/Zombie/zombie.cs" id="1_r5c1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6mdb"]
-size = Vector2(17, 21)
+size = Vector2(15, 18)
 
 [sub_resource type="Animation" id="Animation_u654r"]
 resource_name = "Idle_Down"
@@ -20,38 +21,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_7lpp8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_f2a3x"]
-resource_name = "Idle_Up"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_0ecc5"]
@@ -88,6 +57,38 @@ tracks/0/keys = {
 "values": [8]
 }
 
+[sub_resource type="Animation" id="Animation_f2a3x"]
+resource_name = "Idle_Up"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_7lpp8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_c17yc"]
 resource_name = "Walk_Down"
 length = 0.38
@@ -103,23 +104,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_5skw1"]
-resource_name = "Walk_Up"
-length = 0.38
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_sq8yj"]
@@ -154,6 +138,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_5skw1"]
+resource_name = "Walk_Up"
+length = 0.38
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bl55e"]
@@ -225,11 +226,17 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_12hyp"]
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_xext3")
 states/Idle/position = Vector2(400, 100)
-states/Walking/node = SubResource("AnimationNodeBlendSpace2D_17n4m")
-states/Walking/position = Vector2(585, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3ygu5"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_y1er6"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_ijuj4")]
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_17n4m")
+states/Walk/position = Vector2(585, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3ygu5"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_y1er6"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ijuj4")]
 
 [node name="Zombie" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+wall_min_slide_angle = 0.0
+script = ExtResource("1_r5c1t")
+MoveSpeed = 75.0
+metadata/_edit_vertical_guides_ = []
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dsrg0")
@@ -237,7 +244,7 @@ hframes = 4
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_j6mdb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -250,4 +257,13 @@ tree_root = SubResource("AnimationNodeStateMachine_12hyp")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Idle/blend_position = Vector2(0.0053097, 0.652747)
-parameters/Walking/blend_position = Vector2(-0.0973451, 0.287912)
+parameters/Walk/blend_position = Vector2(-0.0973451, 0.287912)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
