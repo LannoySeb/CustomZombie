@@ -2,8 +2,7 @@ using Godot;
 using System;
 
 public partial class zombie : CharacterBody2D
-{
-    
+{    
     [Export]
 	private float MoveSpeed {get;set;} = 100;
 
@@ -12,6 +11,9 @@ public partial class zombie : CharacterBody2D
 
     [Export]
 	private Vector2 StartingDirection {get;set;} = new Vector2(0,1);
+
+    [Export]
+    private int Health {get;set;} = 1;
 
     private Timer PathFindTimer {get;set;}
 
@@ -61,6 +63,14 @@ public partial class zombie : CharacterBody2D
 		}
 	}
 
+    public void TakeDamage(int damage){
+        Health-=damage;
+
+        if(Health<=0){
+            QueueFree();
+        }
+    } 
+    
     private void MakePath(){
         NavAgent.TargetPosition = Player.GlobalPosition;
     }
@@ -68,5 +78,4 @@ public partial class zombie : CharacterBody2D
     private void OnTimerTimeout(){
         MakePath();
     }
-
 }
