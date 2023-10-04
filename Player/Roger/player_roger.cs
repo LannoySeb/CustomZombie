@@ -9,14 +9,27 @@ public partial class player_roger : CharacterBody2D
 	[Export]
 	private Vector2 StartingDirection {get;set;} = new Vector2(0,1);
 
+	[Export]
+	private Node2D AimingNode {get;set;}
+	private Marker2D Bulletspawner{get;set;}
+	private PackedScene Bullet{get;set;}
+
 	private AnimationTree AnimationTree{get;set;}
 	private AnimationNodeStateMachinePlayback StateMachine{get;set;}
 
-	public override void _PhysicsProcess(double delta){
+    public override void _Process(double delta)
+    {
+		if(Input.IsActionJustPressed("Shoot")){
+			Shoot();
+		}
+		AimingNode.LookAt(GetGlobalMousePosition());
+    }
+    public override void _PhysicsProcess(double delta){
 		// get user direction.
         var inputDirection = new Vector2(
 			Input.GetActionStrength("right") - Input.GetActionStrength("left"),
 			Input.GetActionStrength("down") - Input.GetActionStrength("up"));
+	
 
 		UpdateAnimationParameters(inputDirection);
 
@@ -43,12 +56,24 @@ public partial class player_roger : CharacterBody2D
 		}
 	}
 
+	public void Shoot()
+	{
+		var bulletInstance = Bullet.Instantiate<SimpleBullet>();
+		GetParent().AddChild(bulletInstance);
+
+		bulletInstance.Position = Bulletspawner.GlobalPosition;
+		bulletInstance.Velocity = Bulletspawner.GlobalPosition.DirectionTo(GetGlobalMousePosition());
+		bulletInstance.Rotation = Bulletspawner.GlobalRotation;
+	}
+
     public override void _Ready()
     {
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
+		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
 		StateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/playback");
+		Bullet = GD.Load<PackedScene>("res://Weapon/Bullets/SimpleBullet.tscn");
     }
 
 }
