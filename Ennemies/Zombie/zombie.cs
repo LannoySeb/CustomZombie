@@ -7,7 +7,7 @@ public partial class zombie : CharacterBody2D
 	private float MoveSpeed {get;set;} = 100;
 
     [Export]
-    private Node2D Player {get;set;}
+    public Node2D Player {get;set;}
 
     [Export]
 	private Vector2 StartingDirection {get;set;} = new Vector2(0,1);
@@ -25,6 +25,7 @@ public partial class zombie : CharacterBody2D
 
     public override void _Ready()
     {
+
         NavAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
@@ -70,7 +71,7 @@ public partial class zombie : CharacterBody2D
             QueueFree();
         }
     } 
-    
+
     private void MakePath(){
         NavAgent.TargetPosition = Player.GlobalPosition;
     }
