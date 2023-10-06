@@ -48,7 +48,7 @@ public partial class player_roger : CharacterBody2D
 	/// <summary>
 	/// Set Animation parameters.
 	/// </summary>
-	/// <param name="MoveInput">User inputs.</param>
+	/// <param name="MoveInput">User</param>
 	public void UpdateAnimationParameters(Vector2 MoveInput){
 		if(MoveInput != Vector2.Zero){
 			AnimationTree.Set("parameters/Walk/blend_position", MoveInput);
@@ -77,7 +77,7 @@ public partial class player_roger : CharacterBody2D
 		GetParent().AddChild(bulletInstance);
 
 		bulletInstance.Position = Bulletspawner.GlobalPosition;
-		bulletInstance.Velocity = Bulletspawner.GlobalPosition.DirectionTo(GetGlobalMousePosition());
+		bulletInstance.Velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
 		bulletInstance.Rotation = Bulletspawner.GlobalRotation;
 	}
 
