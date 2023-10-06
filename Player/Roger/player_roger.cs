@@ -14,6 +14,8 @@ public partial class player_roger : CharacterBody2D
 	private Marker2D Bulletspawner{get;set;}
 	private PackedScene Bullet{get;set;}
 
+	private Sprite2D WeaponSkin{get;set;}
+
 	private AnimationTree AnimationTree{get;set;}
 	private AnimationNodeStateMachinePlayback StateMachine{get;set;}
 
@@ -23,6 +25,14 @@ public partial class player_roger : CharacterBody2D
 			Shoot();
 		}
 		AimingNode.LookAt(GetGlobalMousePosition());
+		
+		var gunNeedRotation = GetLocalMousePosition();
+		if(gunNeedRotation.X < 0){
+			WeaponSkin.FlipV = true;
+		}else{
+			WeaponSkin.FlipV = false;
+		}
+		
     }
     public override void _PhysicsProcess(double delta){
 		// get user direction.
@@ -70,6 +80,7 @@ public partial class player_roger : CharacterBody2D
     {
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
 		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
+		WeaponSkin = Bulletspawner.GetNode<Sprite2D>("Weapon");
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
 		StateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/playback");
