@@ -14,6 +14,8 @@ public partial class player_roger : CharacterBody2D
 	private Marker2D Bulletspawner{get;set;}
 	private PackedScene Bullet{get;set;}
 
+	private Sprite2D WeaponSkin{get;set;}
+
 	private AnimationTree AnimationTree{get;set;}
 	private AnimationNodeStateMachinePlayback StateMachine{get;set;}
 
@@ -23,6 +25,9 @@ public partial class player_roger : CharacterBody2D
 			Shoot();
 		}
 		AimingNode.LookAt(GetGlobalMousePosition());
+		
+		GunOrientation();
+		
     }
     public override void _PhysicsProcess(double delta){
 		// get user direction.
@@ -40,6 +45,10 @@ public partial class player_roger : CharacterBody2D
 		PickNewState();
 	}
 
+	/// <summary>
+	/// Set Animation parameters.
+	/// </summary>
+	/// <param name="MoveInput">User inputs.</param>
 	public void UpdateAnimationParameters(Vector2 MoveInput){
 		if(MoveInput != Vector2.Zero){
 			AnimationTree.Set("parameters/Walk/blend_position", MoveInput);
@@ -48,6 +57,9 @@ public partial class player_roger : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Set animation states
+	/// </summary>
 	public void PickNewState(){
 		if(Velocity != Vector2.Zero){
 			StateMachine.Travel("Walk");
@@ -56,6 +68,9 @@ public partial class player_roger : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Shoot a bullet.
+	/// </summary>
 	public void Shoot()
 	{
 		var bulletInstance = Bullet.Instantiate<SimpleBullet>();
@@ -70,11 +85,24 @@ public partial class player_roger : CharacterBody2D
     {
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
 		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
+		WeaponSkin = Bulletspawner.GetNode<Sprite2D>("Weapon");
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
 		StateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/playback");
 		Bullet = GD.Load<PackedScene>("res://Weapon/Bullets/SimpleBullet.tscn");
     }
+
+	/// <summary>
+	/// Flip the gun skin according to the mouse position around the char.
+	/// </summary>
+	private void GunOrientation(){
+		var gunNeedRotation = GetLocalMousePosition();
+		if(gunNeedRotation.X < 0){
+			WeaponSkin.FlipV = true;
+		}else{
+			WeaponSkin.FlipV = false;
+		}
+	}
 
 }
 

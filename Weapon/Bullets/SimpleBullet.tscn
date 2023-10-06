@@ -8,8 +8,8 @@ radius = 3.0
 height = 10.0
 
 [node name="SimpleBullet" type="Area2D"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_xwflt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
