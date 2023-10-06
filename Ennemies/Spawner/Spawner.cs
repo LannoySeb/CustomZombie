@@ -12,9 +12,10 @@ public partial class Spawner : Node2D
 
     private List<Node2D> SpawnerLocations{get;set;}
 
+
     public override void _Ready()
     {
-        Zombie = GD.Load<PackedScene>("res://Ennemies/Zombie/zombie.tscn");
+        Zombie = GD.Load<PackedScene>("res://Ennemies/Zombie/Zombie.tscn");
         SpawnerLocations = GetChildren()
         .Where(child => child is spawner_location)
         .Cast<Node2D>()
@@ -26,14 +27,17 @@ public partial class Spawner : Node2D
     }
 
     public void SpawnZombie(){
-        var zombie = Zombie.Instantiate<zombie>();
 
-        GetParent().AddChild(zombie);
+        if(WaveStats.CanZombieSpawn()){
+            var zombie = Zombie.Instantiate<zombie>();
 
-        zombie.Player = GetParent().GetNode<player_roger>("PlayerRoger");
-        zombie.Position = GetSpawn();
-        zombie._Ready();
+            GetParent().AddChild(zombie);
 
+            zombie.Player = GetParent().GetNode<player_roger>("PlayerRoger");
+            zombie.Position = GetSpawn();
+            zombie._Ready();
+            WaveStats.ZombieActive++;
+        }
     }
 
     public Vector2 GetSpawn(){

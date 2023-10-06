@@ -237,6 +237,8 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_r5c1t")
 MoveSpeed = 75.0
+StartingDirection = null
+Health = null
 metadata/_edit_vertical_guides_ = []
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
