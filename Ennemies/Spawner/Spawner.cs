@@ -21,6 +21,7 @@ public partial class Spawner : Node2D
         .Cast<Node2D>()
         .ToList();
     }
+
     public override void _Process(double delta)
     {
         
@@ -35,7 +36,9 @@ public partial class Spawner : Node2D
 
             zombie.Player = GetParent().GetNode<player_roger>("PlayerRoger");
             zombie.Position = GetSpawn();
+            zombie.SetupZombie();
             zombie._Ready();
+            
             WaveStats.ZombieActive++;
         }
     }

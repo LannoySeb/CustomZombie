@@ -64,6 +64,10 @@ public partial class zombie : CharacterBody2D
 		}
 	}
 
+    public void SetupZombie(){
+        Health = WaveStats.ZombieHealth;
+    }
+
     public void TakeDamage(int damage){
         Health-=damage;
 
