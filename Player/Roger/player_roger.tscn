@@ -264,12 +264,13 @@ parameters/Idle/blend_position = Vector2(0.00105822, 0.0179641)
 parameters/Walk/blend_position = Vector2(0.00105822, 0.0160084)
 
 [node name="Node2D" type="Node2D" parent="."]
+rotation = -0.0698129
 
 [node name="AimingNode" type="Marker2D" parent="Node2D"]
-position = Vector2(20, 2)
+position = Vector2(20, 0)
 
 [node name="Weapon" type="Sprite2D" parent="Node2D/AimingNode"]
-position = Vector2(-6, 1)
+position = Vector2(-6, 0)
 rotation = 6.28319
 scale = Vector2(0.934304, 0.928616)
 texture = ExtResource("3_jb60r")
