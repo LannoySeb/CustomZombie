@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://qyu0k7l1o3ip"]
+[gd_scene load_steps=29 format=3 uid="uid://qyu0k7l1o3ip"]
 
 [ext_resource type="Script" path="res://Player/Roger/player_roger.cs" id="1_tos58"]
 [ext_resource type="Texture2D" uid="uid://cc3qpyge8gkst" path="res://Assets/Characters/Elmuth-Sheett.png" id="2_7b5fm"]
+[ext_resource type="Texture2D" uid="uid://dx7vvw1fxphm7" path="res://Assets/Weapon/Pistol.png" id="3_jb60r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hs11"]
 size = Vector2(15, 17)
@@ -263,7 +264,12 @@ parameters/Idle/blend_position = Vector2(0.00105822, 0.0179641)
 parameters/Walk/blend_position = Vector2(0.00105822, 0.0160084)
 
 [node name="Node2D" type="Node2D" parent="."]
-rotation = 1.92859
 
 [node name="AimingNode" type="Marker2D" parent="Node2D"]
-position = Vector2(14, 2)
+position = Vector2(20, 2)
+
+[node name="Weapon" type="Sprite2D" parent="Node2D/AimingNode"]
+position = Vector2(-6, 1)
+rotation = 6.28319
+scale = Vector2(0.934304, 0.928616)
+texture = ExtResource("3_jb60r")
