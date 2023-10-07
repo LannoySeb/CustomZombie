@@ -20,7 +20,6 @@ public static class WaveStats{
     /// SetUp the NextWave
     /// </summary>
     public static void NextWave(){
-        
         WaveCount++;
         
         if(ZombieHealth<50){
@@ -28,9 +27,11 @@ public static class WaveStats{
         }
         ZombiesWaveCount = (int)Math.Round(ZombiesWaveCount*1.1);
         if(ZombieMaxOnScreen <150){
-            ZombieMaxOnScreen = (int)Math.Round(1.1);
+            ZombieMaxOnScreen = (int)Math.Round(1.1*ZombieMaxOnScreen);
         }
         ZombiesKilled = 0;
+        GD.Print("Wave: " + WaveCount + "Max on screen: " + ZombieMaxOnScreen );
+
     }
 
     /// <summary>
