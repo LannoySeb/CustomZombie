@@ -6,7 +6,7 @@ public static class WaveStats{
 
     public static int ZombiesWaveCount{get;set;} = 10;
 
-    public static int ZombieMaxOnScreen {get;set;} = 1;
+    public static int ZombieMaxOnScreen {get;set;} = 10;
 
     public static int ZombieActive {get;set;} = 0;
 

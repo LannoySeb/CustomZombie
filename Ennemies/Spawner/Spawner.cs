@@ -15,7 +15,7 @@ public partial class Spawner : Node2D
 
     public override void _Ready()
     {
-        Zombie = GD.Load<PackedScene>("res://Ennemies/Zombie/Zombie.tscn");
+        Zombie = GD.Load<PackedScene>("res://Ennemies/Zombie/zombie.tscn");
         SpawnerLocations = GetChildren()
         .Where(child => child is spawner_location)
         .Cast<Node2D>()
