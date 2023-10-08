@@ -12,9 +12,13 @@ public partial class Spawner : Node2D
 
     private List<Node2D> SpawnerLocations{get;set;}
 
+    private WavesGlobals WavesGlobal{get;set;}
+
+
 
     public override void _Ready()
     {
+        WavesGlobal = GetNode<WavesGlobals>("/root/WavesGlobals");
         Zombie = GD.Load<PackedScene>("res://Ennemies/Zombie/zombie.tscn");
         SpawnerLocations = GetChildren()
         .Where(child => child is spawner_location)
@@ -29,7 +33,7 @@ public partial class Spawner : Node2D
 
     public void SpawnZombie(){
 
-        if(WaveStats.CanZombieSpawn()){
+        if(WavesGlobal.CanZombieSpawn()){
             var zombie = Zombie.Instantiate<zombie>();
 
             GetParent().AddChild(zombie);
@@ -39,7 +43,7 @@ public partial class Spawner : Node2D
             zombie.SetupZombie();
             zombie._Ready();
             
-            WaveStats.ZombieActive++;
+            WavesGlobal.ZombieActive++;
         }
     }
 

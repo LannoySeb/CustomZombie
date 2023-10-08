@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dwblochqvmvom"]
+[gd_scene load_steps=59 format=3 uid="uid://dwblochqvmvom"]
 
 [ext_resource type="PackedScene" uid="uid://qyu0k7l1o3ip" path="res://Player/Roger/player_roger.tscn" id="1_mmnsa"]
 [ext_resource type="Texture2D" uid="uid://cvecyqr2tle3t" path="res://Assets/TilesSets/Dirt-tiles.png" id="2_doyvv"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cmlo4jfc4hxp6" path="res://Ennemies/Spawner/spawner.tscn" id="4_hq3ns"]
 [ext_resource type="PackedScene" uid="uid://c1qbwf3wvtbda" path="res://Ennemies/Spawner/spawner_location.tscn" id="5_a6xc5"]
 [ext_resource type="Texture2D" uid="uid://dvo8f8asonfrc" path="res://Assets/TilesSets/Structure/Wall.png" id="5_tjc7v"]
+[ext_resource type="PackedScene" uid="uid://bortalpdknrtd" path="res://UI/wave_counter.tscn" id="6_b7tvw"]
+[ext_resource type="PackedScene" uid="uid://b5vc3du2awhjv" path="res://UI/score_counter.tscn" id="7_mceyu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vbq3d"]
 vertices = PackedVector2Array(-25, -25, 25, -25, 25, 25, -25, 25)
@@ -595,7 +597,6 @@ remote_path = NodePath("../../Camera2D")
 position = Vector2(-116, 15)
 tile_set = SubResource("TileSet_x70r2")
 cell_quadrant_size = 20
-navigation_visibility_mode = 1
 format = 2
 layer_0/name = "GroundLevel"
 layer_0/z_index = -5
@@ -610,6 +611,31 @@ layer_1/tile_data = PackedInt32Array(196600, 65539, 1, 196603, 3, 1, 196602, 131
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(84, 66)
+editor_draw_drag_margin = true
+
+[node name="WaveCounter" parent="Camera2D" instance=ExtResource("6_b7tvw")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -207.0
+offset_top = -106.0
+offset_right = -207.0
+offset_bottom = -106.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ScoreCounter" parent="Camera2D" instance=ExtResource("7_mceyu")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 196.0
+offset_top = 114.0
+offset_right = 196.0
+offset_bottom = 114.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Spawner" parent="." instance=ExtResource("4_hq3ns")]
 visible = true
