@@ -273,4 +273,4 @@ parameters/Walk/blend_position = Vector2(0.00105822, 0.0160084)
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Pistol" parent="Node2D" instance=ExtResource("4_8lwqk")]
-position = Vector2(16, 0)
+position = Vector2(14, 0)

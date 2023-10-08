@@ -11,7 +11,7 @@ public partial class Famas : BaseWeapon
 
     public override void _Ready()
     {
-        base._Ready();
+        CommonSetup();
 
         AmmoMax = 300;
         AmmoLeft = 300;

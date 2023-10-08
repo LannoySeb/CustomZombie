@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://chx8vgnifytxh"]
+
+[ext_resource type="Texture2D" uid="uid://du676dt80rkpu" path="res://Assets/Weapon/Rafale/Famas.png" id="1_0qv53"]
+[ext_resource type="Script" path="res://Interaction/WeaponShop/FamasShop.cs" id="1_cb68l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh526"]
+size = Vector2(54, 48)
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_cb68l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0qv53")
+
+[node name="Area2D" type="Area2D" parent="."]
+disable_mode = 2
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_wh526")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="OnBodyExited"]

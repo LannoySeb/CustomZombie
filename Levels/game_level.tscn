@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dwblochqvmvom"]
+[gd_scene load_steps=63 format=3 uid="uid://dwblochqvmvom"]
 
 [ext_resource type="PackedScene" uid="uid://qyu0k7l1o3ip" path="res://Player/Roger/player_roger.tscn" id="1_mmnsa"]
 [ext_resource type="Texture2D" uid="uid://cvecyqr2tle3t" path="res://Assets/TilesSets/Dirt-tiles.png" id="2_doyvv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bortalpdknrtd" path="res://UI/wave_counter.tscn" id="6_b7tvw"]
 [ext_resource type="PackedScene" uid="uid://b5vc3du2awhjv" path="res://UI/score_counter.tscn" id="7_mceyu"]
 [ext_resource type="PackedScene" uid="uid://ct3druwllwgum" path="res://Assets/TilesSets/Special/hide_able_area.tscn" id="11_cgs1a"]
+[ext_resource type="PackedScene" uid="uid://chx8vgnifytxh" path="res://Interaction/WeaponShop/FamasShop.tscn" id="12_fcj24"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vbq3d"]
 vertices = PackedVector2Array(-25, -25, 25, -25, 25, 25, -25, 25)
@@ -710,3 +711,6 @@ offset_right = 196.0
 offset_bottom = 114.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Shop" parent="." instance=ExtResource("12_fcj24")]
+position = Vector2(-313, -159)

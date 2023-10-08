@@ -24,12 +24,12 @@ public abstract partial class BaseWeapon : Node2D{
 	protected Marker2D Bulletspawner{get;set;}
 
 
-    public override void _Ready()
+    public void CommonSetup()
     {
         Skin = GetNode<Sprite2D>("Skin");
 		Bulletspawner = GetNode<Marker2D>("AimingNode");
-
         LoadBullet();
+        GD.Print(Skin);
     }
     public abstract void Shoot(Node parent, Vector2 velocity);
 
@@ -59,17 +59,20 @@ public abstract partial class BaseWeapon : Node2D{
 	/// Flip the gun skin according to the mouse position around the char.
 	/// </summary>
 	public void GunOrientation(Vector2 aimingPosition){
-		if(aimingPosition.X < 0){
-			Skin.FlipV = true;
-		}else{
-			Skin.FlipV = false;
-		}
+        if(aimingPosition.X < 0){
+            Skin.FlipV = true;
+        }else{
+           Skin.FlipV = false;
+        }
 	}
 
     public void SetLoader(ReloadBar reloadBar){
         ReloadBar = reloadBar;
     }
 
+    public void RemoveWeapon(){
+        QueueFree();
+    }
     public abstract void LoadBullet();
 
 }

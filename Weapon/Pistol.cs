@@ -11,7 +11,7 @@ public partial class Pistol : BaseWeapon
 
     public override void _Ready()
     {
-        base._Ready();
+        CommonSetup();
 
         AmmoMax = 120;
         AmmoLeft = 120;

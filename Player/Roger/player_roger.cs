@@ -77,14 +77,24 @@ public partial class player_roger : CharacterBody2D
 	/// <summary>
 	/// Shoot a bullet.
 	/// </summary>
-	public async void Shoot()
+	public void Shoot()
 	{
-        
-
 		var velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
 
 		Weapon.Shoot(GetParent(),velocity);
-		
+	}
+
+	public void SwapWeapon(BaseWeapon weapon){
+		// remove old weapon
+		var oldWeapon = Weapon;
+		RemoveChild(oldWeapon);
+		oldWeapon.RemoveWeapon();
+
+		AimingNode.AddChild(weapon);
+		weapon.Position =new Vector2(15,0);
+		Weapon = weapon;
+		Weapon.SetLoader(ReloadBar);
+		Weapon.GunOrientation(GetLocalMousePosition());
 
 	}
 
