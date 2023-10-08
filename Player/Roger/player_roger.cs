@@ -14,6 +14,7 @@ public partial class player_roger : CharacterBody2D
 	private Marker2D Bulletspawner{get;set;}
 	private PackedScene Bullet{get;set;}
 
+	private BaseWeapon Weapon{get;set;}
 	private Sprite2D WeaponSkin{get;set;}
 
 	private AnimationTree AnimationTree{get;set;}
@@ -26,7 +27,7 @@ public partial class player_roger : CharacterBody2D
 		}
 		AimingNode.LookAt(GetGlobalMousePosition());
 		
-		GunOrientation();
+		Weapon.GunOrientation(GetLocalMousePosition());
 		
     }
     public override void _PhysicsProcess(double delta){
@@ -73,12 +74,11 @@ public partial class player_roger : CharacterBody2D
 	/// </summary>
 	public void Shoot()
 	{
-		var bulletInstance = Bullet.Instantiate<SimpleBullet>();
-		GetParent().AddChild(bulletInstance);
+		var position = Bulletspawner.GlobalPosition;
+		var velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
+		var rotation = Bulletspawner.GlobalRotation;
 
-		bulletInstance.Position = Bulletspawner.GlobalPosition;
-		bulletInstance.Velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
-		bulletInstance.Rotation = Bulletspawner.GlobalRotation;
+		Weapon.Shoot(GetParent(), position,velocity,rotation);
 	}
 
     public override void _Ready()
@@ -86,23 +86,12 @@ public partial class player_roger : CharacterBody2D
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
 		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
 		WeaponSkin = Bulletspawner.GetNode<Sprite2D>("Weapon");
+		Weapon = (Pistol)Bulletspawner.GetNode<Node2D>("Pistol");
+		
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
 		StateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/playback");
 		Bullet = GD.Load<PackedScene>("res://Weapon/Bullets/SimpleBullet.tscn");
     }
-
-	/// <summary>
-	/// Flip the gun skin according to the mouse position around the char.
-	/// </summary>
-	private void GunOrientation(){
-		var gunNeedRotation = GetLocalMousePosition();
-		if(gunNeedRotation.X < 0){
-			WeaponSkin.FlipV = true;
-		}else{
-			WeaponSkin.FlipV = false;
-		}
-	}
-
 }
 
