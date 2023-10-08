@@ -13,7 +13,7 @@ public partial class zombie : CharacterBody2D
 	private Vector2 StartingDirection {get;set;} = new Vector2(0,1);
 
     [Export]
-    private int Health {get;set;} = WaveStats.ZombieHealth;
+    private int Health {get;set;}
 
     private Timer PathFindTimer {get;set;}
 
@@ -23,8 +23,14 @@ public partial class zombie : CharacterBody2D
 	private AnimationTree AnimationTree{get;set;}
 	private AnimationNodeStateMachinePlayback StateMachine{get;set;}
 
+    private PlayerGlobals PlayerGlobal{get;set;}
+    private WavesGlobals WavesGlobal{get;set;}
+
+
     public override void _Ready()
     {
+        PlayerGlobal = GetNode<PlayerGlobals>("/root/PlayerGlobals");
+        WavesGlobal = GetNode<WavesGlobals>("/root/WavesGlobals");
 
         NavAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 
@@ -65,15 +71,18 @@ public partial class zombie : CharacterBody2D
 	}
 
     public void SetupZombie(){
-        Health = WaveStats.ZombieHealth;
+        Health = WavesGlobal.ZombieHealth;
     }
 
     public void TakeDamage(int damage){
         Health-=damage;
 
         if(Health<=0){
-            WaveStats.ZombieKilled();
+            WavesGlobal.ZombieKilled();
+
             QueueFree();
+            
+            PlayerGlobal.AddScore(10);
         }
     } 
 

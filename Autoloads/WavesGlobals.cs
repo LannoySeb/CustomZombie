@@ -1,25 +1,26 @@
-using System;
 using Godot;
+using System;
 
-public static class WaveStats{
-    public static int WaveCount {get;set;} = 1;
+public partial class WavesGlobals : Node
+{
+    public int WaveCount {get;set;} = 1;
 
-    public static int ZombiesWaveCount{get;set;} = 10;
+    public int ZombiesWaveCount{get;set;} = 10;
 
-    public static int ZombieMaxOnScreen {get;set;} = 10;
+    public int ZombieMaxOnScreen {get;set;} = 10;
 
-    public static int ZombieActive {get;set;} = 0;
+    public int ZombieActive {get;set;} = 0;
 
-    public static int ZombiesKilled{get;set;} = 0;
+    public int ZombiesKilled{get;set;} = 0;
 
-    public static int ZombieHealth {get;set;} = 1;
+    public int ZombieHealth {get;set;} = 1;
 
-    public static float RoundBreak = 10;
+    public float RoundBreak = 10;
     
     /// <summary>
     /// SetUp the NextWave
     /// </summary>
-    public static void NextWave(){
+    public void NextWave(){
         WaveCount++;
         
         if(ZombieHealth<50){
@@ -38,14 +39,14 @@ public static class WaveStats{
     /// Can we make spawn a new Zombie.
     /// </summary>
     /// <returns></returns>
-    public static bool CanZombieSpawn(){
+    public bool CanZombieSpawn(){
         return ZombieActive < ZombieMaxOnScreen && ZombiesKilled + ZombieActive < (ZombiesWaveCount);
     }
 
     /// <summary>
     /// Actualize data on kill. 
     /// </summary>
-    public static void ZombieKilled(){
+    public void ZombieKilled(){
         ZombiesKilled ++;
         ZombieActive --;
 
