@@ -236,9 +236,9 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_1a28c")
 states/Walk/position = Vector2(502, 100)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_oj6ea"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_jbf7r"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cphme")]
 
-[node name="PlayerRoger" type="CharacterBody2D" node_paths=PackedStringArray("AimingNode")]
-collision_layer = 2
-collision_mask = 3
+[node name="PlayerRoger" type="CharacterBody2D" node_paths=PackedStringArray("AimingNode") groups=["Player"]]
+collision_layer = 6
+collision_mask = 7
 script = ExtResource("1_tos58")
 AimingNode = NodePath("Node2D")
 

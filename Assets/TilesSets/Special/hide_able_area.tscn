@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct3druwllwgum"]
+
+[ext_resource type="Texture2D" uid="uid://u3ea8ytnvi4t" path="res://Assets/TilesSets/Structure/Roof.png" id="1_ek4fg"]
+[ext_resource type="Script" path="res://Assets/TilesSets/Special/HideableArea.cs" id="1_jeagg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxks8"]
+size = Vector2(283, 181.25)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3djwn"]
+texture = ExtResource("1_ek4fg")
+texture_region_size = Vector2i(50, 50)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_eet0x"]
+tile_size = Vector2i(50, 50)
+sources/0 = SubResource("TileSetAtlasSource_3djwn")
+
+[node name="HideAbleArea" type="Node2D"]
+z_index = 10
+script = ExtResource("1_jeagg")
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 6
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
+position = Vector2(0, -9.625)
+shape = SubResource("RectangleShape2D_qxks8")
+
+[node name="TileMap" type="TileMap" parent="area/CollisionShape2D"]
+position = Vector2(-199.875, 8.375)
+tile_set = SubResource("TileSet_eet0x")
+format = 2
+layer_0/tile_data = PackedInt32Array(65540, 131072, 0, 65537, 196608, 1, 65541, 131072, 0, 65539, 131072, 0, 65538, 131072, 0, -65531, 196608, 0, -65532, 196608, 0, -65533, 196608, 0, -65534, 196608, 0, 2, 196608, 0, 3, 196608, 0, 4, 196608, 0, -65530, 65536, 1, 1, 0, 2, -65535, 0, 2, 5, 196608, 0, 6, 65536, 1, -131070, 65536, 0, -131069, 65536, 0, -131068, 65536, 0, -131067, 65536, 0, -131066, 131072, 1, -131071, 65536, 2, 65542, 0, 1)
+
+[connection signal="body_entered" from="area" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="area" to="." method="OnBodyExited"]
