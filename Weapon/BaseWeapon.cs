@@ -15,50 +15,44 @@ public abstract partial class BaseWeapon : Node2D{
     public int AmmoLeftInCharger{get;set;}
     public int ReloadTime{get;set;}
 
-    private bool IsReloading{get;set;} = false;
+    protected bool IsReloading{get;set;} = false;
 
     private ReloadBar ReloadBar{get;set;}
 
     public Sprite2D Skin{get;set;}
 
+	protected Marker2D Bulletspawner{get;set;}
+
+
     public override void _Ready()
     {
         Skin = GetNode<Sprite2D>("Skin");
+		Bulletspawner = GetNode<Marker2D>("AimingNode");
+
         LoadBullet();
     }
-    public void Shoot(Node parent, Vector2 position, Vector2 velocity, float rotation){
-        
-        if( !IsReloading && AmmoLeftInCharger > 0){
-            var bulletInstance = Bullet.Instantiate<SimpleBullet>();
-            parent.AddChild(bulletInstance);
-
-            bulletInstance.Position = position;
-            bulletInstance.Velocity = velocity;
-            bulletInstance.Rotation = rotation;
-
-            AmmoLeftInCharger--;
-            GD.Print(AmmoLeftInCharger + "/" + ChargerSize);
-        }else{
-            if(!IsReloading){
-                Reload();
-            }
-        }
-    }
+    public abstract void Shoot(Node parent, Vector2 velocity);
 
     public async void Reload(){
-        IsReloading = true;
+        if(AmmoLeft>0){
+            IsReloading = true;
 
-        GD.Print("RELOAD");
-        
-        ReloadBar.ReloadAnimation(ReloadTime);
-        await Task.Delay(TimeSpan.FromSeconds(ReloadTime));
-        
-        AmmoLeft-=ChargerSize-AmmoLeftInCharger;
-        AmmoLeftInCharger = AmmoLeftInCharger + (ChargerSize - AmmoLeftInCharger);
-        
-        GD.Print("RELOADED");
-        
-        IsReloading = false;
+            GD.Print("RELOAD");
+            
+            ReloadBar.ReloadAnimation(ReloadTime);
+            await Task.Delay(TimeSpan.FromSeconds(ReloadTime));
+            
+            AmmoLeft= AmmoLeft-(ChargerSize-AmmoLeftInCharger);
+            if((ChargerSize-AmmoLeftInCharger)<AmmoLeft){
+                AmmoLeftInCharger = AmmoLeftInCharger + (ChargerSize - AmmoLeftInCharger);
+            }else{
+                AmmoLeftInCharger = AmmoLeft;
+            }
+            
+            GD.Print("RELOADED");
+            
+            IsReloading = false;
+        }
     }
 
     /// <summary>

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class player_roger : CharacterBody2D
 {
@@ -11,7 +12,7 @@ public partial class player_roger : CharacterBody2D
 
 	[Export]
 	private Node2D AimingNode {get;set;}
-	private Marker2D Bulletspawner{get;set;}
+
 	private PackedScene Bullet{get;set;}
 
 	private BaseWeapon Weapon{get;set;}
@@ -76,23 +77,25 @@ public partial class player_roger : CharacterBody2D
 	/// <summary>
 	/// Shoot a bullet.
 	/// </summary>
-	public void Shoot()
+	public async void Shoot()
 	{
-		var position = Bulletspawner.GlobalPosition;
-		var velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
-		var rotation = Bulletspawner.GlobalRotation;
+        for(int i =0; i<3; i++){
 
-		Weapon.Shoot(GetParent(), position,velocity,rotation);
+		var velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
+
+		Weapon.Shoot(GetParent(),velocity);
+		
+		await Task.Delay(TimeSpan.FromMilliseconds(100));
+        }
 	}
 
     public override void _Ready()
     {
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
-		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
 
 		ReloadBar = GetNode<ReloadBar>("ReloadBar");
 
-		Weapon = (Pistol)Bulletspawner.GetNode<Node2D>("Pistol");
+		Weapon = (Famas)AimingNode.GetNode<Node2D>("Famas");
 		Weapon.SetLoader(ReloadBar);
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
