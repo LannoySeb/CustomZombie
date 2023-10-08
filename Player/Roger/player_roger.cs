@@ -15,7 +15,6 @@ public partial class player_roger : CharacterBody2D
 	private PackedScene Bullet{get;set;}
 
 	private BaseWeapon Weapon{get;set;}
-	private Sprite2D WeaponSkin{get;set;}
 
 	private AnimationTree AnimationTree{get;set;}
 	private AnimationNodeStateMachinePlayback StateMachine{get;set;}
@@ -85,7 +84,6 @@ public partial class player_roger : CharacterBody2D
     {
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
 		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
-		WeaponSkin = Bulletspawner.GetNode<Sprite2D>("Weapon");
 		Weapon = (Pistol)Bulletspawner.GetNode<Node2D>("Pistol");
 		
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
