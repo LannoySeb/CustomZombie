@@ -28,7 +28,7 @@ public abstract partial class BaseWeapon : Node2D{
     }
     public void Shoot(Node parent, Vector2 position, Vector2 velocity, float rotation){
         
-        if( AmmoLeftInCharger > 0){
+        if( !IsReloading && AmmoLeftInCharger > 0){
             var bulletInstance = Bullet.Instantiate<SimpleBullet>();
             parent.AddChild(bulletInstance);
 
@@ -47,12 +47,17 @@ public abstract partial class BaseWeapon : Node2D{
 
     public async void Reload(){
         IsReloading = true;
+
         GD.Print("RELOAD");
+        
         ReloadBar.ReloadAnimation(ReloadTime);
         await Task.Delay(TimeSpan.FromSeconds(ReloadTime));
-        AmmoLeft-=ChargerSize;
-        AmmoLeftInCharger = ChargerSize;
+        
+        AmmoLeft-=ChargerSize-AmmoLeftInCharger;
+        AmmoLeftInCharger = AmmoLeftInCharger + (ChargerSize - AmmoLeftInCharger);
+        
         GD.Print("RELOADED");
+        
         IsReloading = false;
     }
 

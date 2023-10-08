@@ -23,6 +23,9 @@ public partial class player_roger : CharacterBody2D
 
     public override void _Process(double delta)
     {
+		if(Input.IsActionJustPressed("Reloading")){
+			Weapon.Reload();
+		}
 		if(Input.IsActionJustPressed("Shoot")){
 			Shoot();
 		}
