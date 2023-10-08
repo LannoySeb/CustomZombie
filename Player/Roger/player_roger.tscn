@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://qyu0k7l1o3ip"]
+[gd_scene load_steps=30 format=3 uid="uid://qyu0k7l1o3ip"]
 
 [ext_resource type="Script" path="res://Player/Roger/player_roger.cs" id="1_tos58"]
 [ext_resource type="Texture2D" uid="uid://cc3qpyge8gkst" path="res://Assets/Characters/Elmuth-Sheett.png" id="2_7b5fm"]
-[ext_resource type="Texture2D" uid="uid://dx7vvw1fxphm7" path="res://Assets/Weapon/Pistol.png" id="3_jb60r"]
+[ext_resource type="PackedScene" uid="uid://cshgeecninkl1" path="res://UI/reloadBar.tscn" id="2_gy1oo"]
+[ext_resource type="PackedScene" uid="uid://dnymqgimhsh13" path="res://Weapon/pistol.tscn" id="4_8lwqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hs11"]
 size = Vector2(15, 8)
@@ -242,6 +243,12 @@ collision_mask = 7
 script = ExtResource("1_tos58")
 AimingNode = NodePath("Node2D")
 
+[node name="ReloadBar" parent="." instance=ExtResource("2_gy1oo")]
+offset_left = -13.0
+offset_top = -22.0
+offset_right = -13.0
+offset_bottom = -22.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7b5fm")
 hframes = 4
@@ -264,13 +271,6 @@ parameters/Idle/blend_position = Vector2(0.00105822, 0.0179641)
 parameters/Walk/blend_position = Vector2(0.00105822, 0.0160084)
 
 [node name="Node2D" type="Node2D" parent="."]
-rotation = -0.0698129
 
-[node name="AimingNode" type="Marker2D" parent="Node2D"]
-position = Vector2(20, 0)
-
-[node name="Weapon" type="Sprite2D" parent="Node2D/AimingNode"]
-position = Vector2(-6, 0)
-rotation = 6.28319
-scale = Vector2(0.934304, 0.928616)
-texture = ExtResource("3_jb60r")
+[node name="Pistol" parent="Node2D" instance=ExtResource("4_8lwqk")]
+position = Vector2(14, 0)

@@ -27,7 +27,7 @@ tile_size = Vector2i(50, 50)
 sources/0 = SubResource("TileSetAtlasSource_3djwn")
 
 [node name="HideAbleArea" type="Node2D"]
-z_index = 10
+z_index = 1
 script = ExtResource("1_jeagg")
 
 [node name="area" type="Area2D" parent="."]

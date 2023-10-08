@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dwblochqvmvom"]
+[gd_scene load_steps=63 format=3 uid="uid://dwblochqvmvom"]
 
 [ext_resource type="PackedScene" uid="uid://qyu0k7l1o3ip" path="res://Player/Roger/player_roger.tscn" id="1_mmnsa"]
 [ext_resource type="Texture2D" uid="uid://cvecyqr2tle3t" path="res://Assets/TilesSets/Dirt-tiles.png" id="2_doyvv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bortalpdknrtd" path="res://UI/wave_counter.tscn" id="6_b7tvw"]
 [ext_resource type="PackedScene" uid="uid://b5vc3du2awhjv" path="res://UI/score_counter.tscn" id="7_mceyu"]
 [ext_resource type="PackedScene" uid="uid://ct3druwllwgum" path="res://Assets/TilesSets/Special/hide_able_area.tscn" id="11_cgs1a"]
+[ext_resource type="PackedScene" uid="uid://chx8vgnifytxh" path="res://Interaction/WeaponShop/FamasShop.tscn" id="12_fcj24"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vbq3d"]
 vertices = PackedVector2Array(-25, -25, 25, -25, 25, 25, -25, 25)
@@ -666,7 +667,24 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = -5
 layer_1/tile_data = PackedInt32Array(196600, 131075, 1, 196603, 3, 1, 196602, 131075, 1, 65531, 3, 0, -5, 65539, 0, -6, 65539, 2, -7, 131075, 1, -8, 3, 2, 131062, 3, 0, -10, 131075, 0, -9, 131075, 1, 196601, 3, 2, 65526, 3, 0, 131067, 3, 0, 196598, 65539, 1, 196599, 65539, 2)
 
+[node name="Spawner" parent="." instance=ExtResource("4_hq3ns")]
+visible = true
+
+[node name="SpawnerLocation" parent="Spawner" instance=ExtResource("5_a6xc5")]
+position = Vector2(-160, 311)
+
+[node name="SpawnerLocation2" parent="Spawner" instance=ExtResource("5_a6xc5")]
+position = Vector2(318, 24)
+
+[node name="SpawnerLocation4" parent="Spawner" instance=ExtResource("5_a6xc5")]
+position = Vector2(115, 541)
+scale = Vector2(0.992531, 1)
+
+[node name="HideAbleArea" parent="." instance=ExtResource("11_cgs1a")]
+position = Vector2(-465, 63)
+
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 10
 position = Vector2(84, 66)
 editor_draw_drag_margin = true
 
@@ -694,18 +712,5 @@ offset_bottom = 114.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Spawner" parent="." instance=ExtResource("4_hq3ns")]
-visible = true
-
-[node name="SpawnerLocation" parent="Spawner" instance=ExtResource("5_a6xc5")]
-position = Vector2(-160, 311)
-
-[node name="SpawnerLocation2" parent="Spawner" instance=ExtResource("5_a6xc5")]
-position = Vector2(318, 24)
-
-[node name="SpawnerLocation4" parent="Spawner" instance=ExtResource("5_a6xc5")]
-position = Vector2(115, 541)
-scale = Vector2(0.992531, 1)
-
-[node name="HideAbleArea" parent="." instance=ExtResource("11_cgs1a")]
-position = Vector2(-465, 63)
+[node name="Shop" parent="." instance=ExtResource("12_fcj24")]
+position = Vector2(-313, -159)

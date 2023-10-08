@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cshgeecninkl1"]
+
+[ext_resource type="Theme" uid="uid://deyvt3msupk2q" path="res://UI/Theme/ReloadBarTheme.tres" id="1_5pg45"]
+[ext_resource type="Script" path="res://UI/ReloadBar.cs" id="1_fpepj"]
+
+[node name="ReloadBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpepj")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 3
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 8.0
+theme = ExtResource("1_5pg45")
+value = 50.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

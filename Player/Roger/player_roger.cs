@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class player_roger : CharacterBody2D
 {
@@ -11,22 +12,27 @@ public partial class player_roger : CharacterBody2D
 
 	[Export]
 	private Node2D AimingNode {get;set;}
-	private Marker2D Bulletspawner{get;set;}
+
 	private PackedScene Bullet{get;set;}
 
-	private Sprite2D WeaponSkin{get;set;}
+	private BaseWeapon Weapon{get;set;}
+
+	private ReloadBar ReloadBar{get;set;}
 
 	private AnimationTree AnimationTree{get;set;}
 	private AnimationNodeStateMachinePlayback StateMachine{get;set;}
 
     public override void _Process(double delta)
     {
+		if(Input.IsActionJustPressed("Reloading")){
+			Weapon.Reload();
+		}
 		if(Input.IsActionJustPressed("Shoot")){
 			Shoot();
 		}
 		AimingNode.LookAt(GetGlobalMousePosition());
 		
-		GunOrientation();
+		Weapon.GunOrientation(GetLocalMousePosition());
 		
     }
     public override void _PhysicsProcess(double delta){
@@ -73,36 +79,37 @@ public partial class player_roger : CharacterBody2D
 	/// </summary>
 	public void Shoot()
 	{
-		var bulletInstance = Bullet.Instantiate<SimpleBullet>();
-		GetParent().AddChild(bulletInstance);
+		var velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
 
-		bulletInstance.Position = Bulletspawner.GlobalPosition;
-		bulletInstance.Velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
-		bulletInstance.Rotation = Bulletspawner.GlobalRotation;
+		Weapon.Shoot(GetParent(),velocity);
+	}
+
+	public void SwapWeapon(BaseWeapon weapon){
+		// remove old weapon
+		var oldWeapon = Weapon;
+		RemoveChild(oldWeapon);
+		oldWeapon.RemoveWeapon();
+
+		AimingNode.AddChild(weapon);
+		weapon.Position =new Vector2(15,0);
+		Weapon = weapon;
+		Weapon.SetLoader(ReloadBar);
+		Weapon.GunOrientation(GetLocalMousePosition());
+
 	}
 
     public override void _Ready()
     {
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
-		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
-		WeaponSkin = Bulletspawner.GetNode<Sprite2D>("Weapon");
+
+		ReloadBar = GetNode<ReloadBar>("ReloadBar");
+
+		Weapon = (Pistol)AimingNode.GetNode<Node2D>("Pistol");
+		Weapon.SetLoader(ReloadBar);
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
 		StateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/playback");
 		Bullet = GD.Load<PackedScene>("res://Weapon/Bullets/SimpleBullet.tscn");
     }
-
-	/// <summary>
-	/// Flip the gun skin according to the mouse position around the char.
-	/// </summary>
-	private void GunOrientation(){
-		var gunNeedRotation = GetLocalMousePosition();
-		if(gunNeedRotation.X < 0){
-			WeaponSkin.FlipV = true;
-		}else{
-			WeaponSkin.FlipV = false;
-		}
-	}
-
 }
 
