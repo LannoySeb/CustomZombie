@@ -10,6 +10,8 @@ public partial class HideableArea : Node2D
     }
 
     public void OnBodyExited(Node2D body){
-        Show();
+        if(body.IsInGroup("Player")){
+            Show();
+        }
     }
 }
