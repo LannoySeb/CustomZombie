@@ -17,6 +17,8 @@ public abstract partial class BaseWeapon : Node2D{
 
     private bool IsReloading{get;set;} = false;
 
+    private ReloadBar ReloadBar{get;set;}
+
     public Sprite2D Skin{get;set;}
 
     public override void _Ready()
@@ -46,6 +48,7 @@ public abstract partial class BaseWeapon : Node2D{
     public async void Reload(){
         IsReloading = true;
         GD.Print("RELOAD");
+        ReloadBar.ReloadAnimation(ReloadTime);
         await Task.Delay(TimeSpan.FromSeconds(ReloadTime));
         AmmoLeft-=ChargerSize;
         AmmoLeftInCharger = ChargerSize;
@@ -63,6 +66,10 @@ public abstract partial class BaseWeapon : Node2D{
 			Skin.FlipV = false;
 		}
 	}
+
+    public void SetLoader(ReloadBar reloadBar){
+        ReloadBar = reloadBar;
+    }
 
     public abstract void LoadBullet();
 

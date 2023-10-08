@@ -16,6 +16,8 @@ public partial class player_roger : CharacterBody2D
 
 	private BaseWeapon Weapon{get;set;}
 
+	private ReloadBar ReloadBar{get;set;}
+
 	private AnimationTree AnimationTree{get;set;}
 	private AnimationNodeStateMachinePlayback StateMachine{get;set;}
 
@@ -84,8 +86,11 @@ public partial class player_roger : CharacterBody2D
     {
         AnimationTree = GetNode<AnimationTree>("AnimationTree");
 		Bulletspawner = AimingNode.GetNode<Marker2D>("AimingNode");
+
+		ReloadBar = GetNode<ReloadBar>("ReloadBar");
+
 		Weapon = (Pistol)Bulletspawner.GetNode<Node2D>("Pistol");
-		
+		Weapon.SetLoader(ReloadBar);
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
 		StateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/playback");
