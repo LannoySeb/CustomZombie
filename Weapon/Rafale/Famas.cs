@@ -23,6 +23,8 @@ public partial class Famas : BaseWeapon
        public async override void Shoot(Node parent, Vector2 velocity){
         
         if( !IsReloading && AmmoLeftInCharger > 0){
+            for(int i =0; i<3; i++){
+                
                 var bulletInstance = Bullet.Instantiate<SimpleBullet>();
                 parent.AddChild(bulletInstance);
 
@@ -32,6 +34,9 @@ public partial class Famas : BaseWeapon
 
                 AmmoLeftInCharger--;
                 GD.Print(AmmoLeftInCharger + "/" + ChargerSize);
+                
+                await Task.Delay(TimeSpan.FromMilliseconds(100));
+        }
         }
         else{
             if(!IsReloading){

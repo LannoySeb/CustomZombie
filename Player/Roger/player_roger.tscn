@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/Roger/player_roger.cs" id="1_tos58"]
 [ext_resource type="Texture2D" uid="uid://cc3qpyge8gkst" path="res://Assets/Characters/Elmuth-Sheett.png" id="2_7b5fm"]
 [ext_resource type="PackedScene" uid="uid://cshgeecninkl1" path="res://UI/reloadBar.tscn" id="2_gy1oo"]
-[ext_resource type="PackedScene" uid="uid://byrjixdafls2f" path="res://Weapon/Rafale/Famas.tscn" id="4_wwkcv"]
+[ext_resource type="PackedScene" uid="uid://dnymqgimhsh13" path="res://Weapon/pistol.tscn" id="4_8lwqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hs11"]
 size = Vector2(15, 8)
@@ -272,5 +272,5 @@ parameters/Walk/blend_position = Vector2(0.00105822, 0.0160084)
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Famas" parent="Node2D" instance=ExtResource("4_wwkcv")]
-position = Vector2(14, 3)
+[node name="Pistol" parent="Node2D" instance=ExtResource("4_8lwqk")]
+position = Vector2(16, 0)

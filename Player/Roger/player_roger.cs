@@ -79,14 +79,13 @@ public partial class player_roger : CharacterBody2D
 	/// </summary>
 	public async void Shoot()
 	{
-        for(int i =0; i<3; i++){
+        
 
 		var velocity = GlobalPosition.DirectionTo(GetGlobalMousePosition());
 
 		Weapon.Shoot(GetParent(),velocity);
 		
-		await Task.Delay(TimeSpan.FromMilliseconds(100));
-        }
+
 	}
 
     public override void _Ready()
@@ -95,7 +94,7 @@ public partial class player_roger : CharacterBody2D
 
 		ReloadBar = GetNode<ReloadBar>("ReloadBar");
 
-		Weapon = (Famas)AimingNode.GetNode<Node2D>("Famas");
+		Weapon = (Pistol)AimingNode.GetNode<Node2D>("Pistol");
 		Weapon.SetLoader(ReloadBar);
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 
