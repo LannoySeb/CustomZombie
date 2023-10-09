@@ -8,20 +8,31 @@ public partial class FamasShop : Node2D
 
     private PackedScene Weapon{get;set;}
 
-    player_roger Player{get;set;}
+    private Label InteractionText{get;set;}
+
+    private player_roger Player{get;set;}
+
+    private PlayerGlobals PlayerGlobals{get;set;}
+
+    private int Price{get;set;} = 100;
 
     public override void _Ready()
     {
         base._Ready();
         Weapon = GD.Load<PackedScene>("res://Weapon/Rafale/Famas.tscn");
+        InteractionText = GetNode<Label>("InteractionText");
+        PlayerGlobals = GetNode<PlayerGlobals>("/root/PlayerGlobals");
+        
+        InteractionText.Text = Price + " Points";
 
         SetProcess(false);
+        InteractionText.Hide();
     }
 
     public void OnBodyEntered(Node2D body){
         if(body.IsInGroup("Player")){
             SetProcess(true);
-            GD.Print("Can buy famas");
+            InteractionText.Show();
             Player = (player_roger)body;
         }
     }
@@ -29,17 +40,26 @@ public partial class FamasShop : Node2D
     public void OnBodyExited(Node2D body){
          if(body.IsInGroup("Player")){
             SetProcess(false);
-            GD.Print("Leave shop");
             Player = null;
+            InteractionText.Hide();
+            InteractionText.Text = Price + " Points";
         }
     }
 
     public override void _Process(double delta)
     {
-        if(Input.IsActionJustPressed("Interaction")){
-            var famas = Weapon.Instantiate<Famas>();
-            Player.SwapWeapon(famas);
+        if(Input.IsActionJustPressed("Interaction")  ){
+
+            if(PlayerGlobals.CanPay(Price)){
+                var famas = Weapon.Instantiate<Famas>();
+                PlayerGlobals.SpendPoints(Price);
+                Player.SwapWeapon(famas);
+            }
+            else{
+                InteractionText.Text = "Not enought Points";
+            }
         }
+
     }
 
 }

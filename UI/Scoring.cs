@@ -11,6 +11,6 @@ public partial class Scoring : Label
     }
     public override void _Process(double delta)
     {
-        Text = PlayerGlobal.Score.ToString();
+        Text = PlayerGlobal.ScoreLeft.ToString();
     }
 }
