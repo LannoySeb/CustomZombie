@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dwblochqvmvom"]
+[gd_scene load_steps=66 format=3 uid="uid://dwblochqvmvom"]
 
 [ext_resource type="PackedScene" uid="uid://qyu0k7l1o3ip" path="res://Player/Roger/player_roger.tscn" id="1_mmnsa"]
 [ext_resource type="Texture2D" uid="uid://cvecyqr2tle3t" path="res://Assets/TilesSets/Dirt-tiles.png" id="2_doyvv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://u3ea8ytnvi4t" path="res://Assets/TilesSets/Structure/Roof.png" id="6_2i024"]
 [ext_resource type="PackedScene" uid="uid://bortalpdknrtd" path="res://UI/wave_counter.tscn" id="6_b7tvw"]
 [ext_resource type="PackedScene" uid="uid://b5vc3du2awhjv" path="res://UI/score_counter.tscn" id="7_mceyu"]
+[ext_resource type="PackedScene" uid="uid://dsg5ebnmyfr26" path="res://Ennemies/Spawner/map_area.tscn" id="8_ladgj"]
 [ext_resource type="PackedScene" uid="uid://ct3druwllwgum" path="res://Assets/TilesSets/Special/hide_able_area.tscn" id="11_cgs1a"]
 [ext_resource type="PackedScene" uid="uid://chx8vgnifytxh" path="res://Interaction/WeaponShop/FamasShop.tscn" id="12_fcj24"]
 [ext_resource type="PackedScene" uid="uid://diwfpg0wufr58" path="res://Interaction/Obstacles/Log.tscn" id="13_vpxdx"]
@@ -644,6 +645,9 @@ sources/2 = SubResource("TileSetAtlasSource_m2pxu")
 sources/3 = SubResource("TileSetAtlasSource_b8vlb")
 sources/5 = SubResource("TileSetAtlasSource_eok8k")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0fd5"]
+size = Vector2(727.5, 298)
+
 [node name="GameLevel" type="Node2D"]
 
 [node name="PlayerRoger" parent="." instance=ExtResource("1_mmnsa")]
@@ -671,15 +675,17 @@ layer_1/tile_data = PackedInt32Array(196600, 131075, 1, 196603, 3, 1, 196602, 13
 [node name="Spawner" parent="." instance=ExtResource("4_hq3ns")]
 visible = true
 
-[node name="SpawnerLocation" parent="Spawner" instance=ExtResource("5_a6xc5")]
-position = Vector2(-160, 311)
+[node name="MapArea" parent="Spawner" node_paths=PackedStringArray("Area") instance=ExtResource("8_ladgj")]
+collision_layer = 2
+collision_mask = 2
+Area = NodePath("CollisionShape2D")
 
-[node name="SpawnerLocation2" parent="Spawner" instance=ExtResource("5_a6xc5")]
-position = Vector2(318, 24)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/MapArea"]
+position = Vector2(117.25, 486)
+shape = SubResource("RectangleShape2D_q0fd5")
 
-[node name="SpawnerLocation4" parent="Spawner" instance=ExtResource("5_a6xc5")]
-position = Vector2(115, 541)
-scale = Vector2(0.992531, 1)
+[node name="SpawnerLocation" parent="Spawner/MapArea" instance=ExtResource("5_a6xc5")]
+position = Vector2(107, 535)
 
 [node name="HideAbleArea" parent="." instance=ExtResource("11_cgs1a")]
 position = Vector2(-465, 63)
@@ -717,7 +723,7 @@ grow_vertical = 1
 position = Vector2(-313, -159)
 
 [node name="Obstacle" parent="." instance=ExtResource("13_vpxdx")]
-position = Vector2(-42, 319)
+position = Vector2(-41, 315)
 
 [node name="Obstacle2" parent="." instance=ExtResource("13_vpxdx")]
 position = Vector2(260, 319)
