@@ -10,7 +10,7 @@ public partial class Spawner : Node2D
 
     private PackedScene Zombie{get;set;}
 
-    private List<Node2D> SpawnerLocations{get;set;}
+    private List<Node2D> SpawnerLocations{get;set;}= new List<Node2D>();
 
     private WavesGlobals WavesGlobal{get;set;}
 
@@ -20,20 +20,17 @@ public partial class Spawner : Node2D
     {
         WavesGlobal = GetNode<WavesGlobals>("/root/WavesGlobals");
         Zombie = GD.Load<PackedScene>("res://Ennemies/Zombie/zombie.tscn");
-        SpawnerLocations = GetChildren()
-        .Where(child => child is spawner_location)
-        .Cast<Node2D>()
-        .ToList();
+
     }
 
     public override void _Process(double delta)
     {
-        
+        LoadActiveSpawner();
     }
 
     public void SpawnZombie(){
 
-        if(WavesGlobal.CanZombieSpawn()){
+        if(WavesGlobal.CanZombieSpawn() && SpawnerLocations.Count>0){
             var zombie = Zombie.Instantiate<zombie>();
 
             GetParent().AddChild(zombie);
@@ -55,5 +52,22 @@ public partial class Spawner : Node2D
 
     private void OnTimerTimeout(){
         SpawnZombie();
+    }
+
+    private void LoadActiveSpawner(){
+        var spawners  =  new List<Node2D>();
+        var areas = GetChildren()
+        .Where(child => child is MapArea)
+        .Where(child => ((MapArea)child).IsActive);
+        foreach (var child in areas)
+        {
+            var area = (MapArea) child;
+            spawners.AddRange( area.SpawnLocations);
+        GD.Print(spawners.Count);
+
+        }
+        
+
+        SpawnerLocations = spawners;
     }
 }
