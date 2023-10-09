@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://chx8vgnifytxh"]
+[gd_scene load_steps=5 format=3 uid="uid://chx8vgnifytxh"]
 
 [ext_resource type="Texture2D" uid="uid://du676dt80rkpu" path="res://Assets/Weapon/Rafale/Famas.png" id="1_0qv53"]
 [ext_resource type="Script" path="res://Interaction/WeaponShop/FamasShop.cs" id="1_cb68l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wh526"]
 size = Vector2(54, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rympq"]
+font_size = 10
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_cb68l")
@@ -20,6 +23,17 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2, 4)
 shape = SubResource("RectangleShape2D_wh526")
+
+[node name="InteractionText" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -38.0
+offset_right = 38.0
+offset_bottom = -12.0
+text = "200 points "
+label_settings = SubResource("LabelSettings_rympq")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="Area2D" to="." method="OnBodyExited"]
