@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://dwblochqvmvom"]
+[gd_scene load_steps=68 format=3 uid="uid://dwblochqvmvom"]
 
 [ext_resource type="PackedScene" uid="uid://qyu0k7l1o3ip" path="res://Player/Roger/player_roger.tscn" id="1_mmnsa"]
 [ext_resource type="Texture2D" uid="uid://cvecyqr2tle3t" path="res://Assets/TilesSets/Dirt-tiles.png" id="2_doyvv"]
@@ -648,6 +648,12 @@ sources/5 = SubResource("TileSetAtlasSource_eok8k")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0fd5"]
 size = Vector2(727.5, 298)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_um7dj"]
+size = Vector2(728, 398)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8k4cj"]
+size = Vector2(670, 625.5)
+
 [node name="GameLevel" type="Node2D"]
 
 [node name="PlayerRoger" parent="." instance=ExtResource("1_mmnsa")]
@@ -675,17 +681,58 @@ layer_1/tile_data = PackedInt32Array(196600, 131075, 1, 196603, 3, 1, 196602, 13
 [node name="Spawner" parent="." instance=ExtResource("4_hq3ns")]
 visible = true
 
-[node name="MapArea" parent="Spawner" node_paths=PackedStringArray("Area") instance=ExtResource("8_ladgj")]
+[node name="Docks" parent="Spawner" node_paths=PackedStringArray("Area") groups=["MapArea"] instance=ExtResource("8_ladgj")]
 collision_layer = 2
 collision_mask = 2
 Area = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/MapArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/Docks"]
 position = Vector2(117.25, 486)
 shape = SubResource("RectangleShape2D_q0fd5")
 
-[node name="SpawnerLocation" parent="Spawner/MapArea" instance=ExtResource("5_a6xc5")]
-position = Vector2(107, 535)
+[node name="SpawnerLocation" parent="Spawner/Docks" instance=ExtResource("5_a6xc5")]
+position = Vector2(395, 539)
+
+[node name="SpawnerLocation2" parent="Spawner/Docks" instance=ExtResource("5_a6xc5")]
+position = Vector2(-184, 543)
+
+[node name="Spawn" parent="Spawner" groups=["MapArea"] instance=ExtResource("8_ladgj")]
+position = Vector2(459, 92)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/Spawn"]
+position = Vector2(-315, 62)
+shape = SubResource("RectangleShape2D_um7dj")
+
+[node name="SpawnerLocation" parent="Spawner/Spawn" instance=ExtResource("5_a6xc5")]
+position = Vector2(16, 60)
+
+[node name="SpawnerLocation2" parent="Spawner/Spawn" instance=ExtResource("5_a6xc5")]
+position = Vector2(-639, 193)
+
+[node name="SpawnerLocation3" parent="Spawner/Spawn" instance=ExtResource("5_a6xc5")]
+position = Vector2(-646, -101)
+
+[node name="House" parent="Spawner" groups=["MapArea"] instance=ExtResource("8_ladgj")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/House"]
+position = Vector2(-430, 61.25)
+shape = SubResource("RectangleShape2D_8k4cj")
+
+[node name="SpawnerLocation" parent="Spawner/House" instance=ExtResource("5_a6xc5")]
+position = Vector2(-643, -208)
+
+[node name="SpawnerLocation2" parent="Spawner/House" instance=ExtResource("5_a6xc5")]
+position = Vector2(-542, 94)
+
+[node name="SpawnerLocation3" parent="Spawner/House" instance=ExtResource("5_a6xc5")]
+position = Vector2(-151, -165)
+
+[node name="SpawnerLocation4" parent="Spawner/House" instance=ExtResource("5_a6xc5")]
+position = Vector2(-613, 283)
 
 [node name="HideAbleArea" parent="." instance=ExtResource("11_cgs1a")]
 position = Vector2(-465, 63)
@@ -723,7 +770,7 @@ grow_vertical = 1
 position = Vector2(-313, -159)
 
 [node name="Obstacle" parent="." instance=ExtResource("13_vpxdx")]
-position = Vector2(-41, 315)
+position = Vector2(-42, 319)
 
 [node name="Obstacle2" parent="." instance=ExtResource("13_vpxdx")]
 position = Vector2(260, 319)

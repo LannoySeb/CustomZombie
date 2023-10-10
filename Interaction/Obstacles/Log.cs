@@ -29,6 +29,7 @@ public partial class Log : InteractablesBase
         {
                 if (PlayerGlobals.CanPay(Price))
                 {
+                        PlayerGlobals.SpendPoints(Price);
                         QueueFree();
                 }
                 else

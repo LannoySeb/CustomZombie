@@ -57,8 +57,9 @@ public partial class Spawner : Node2D
     private void LoadActiveSpawner(){
         var spawners  =  new List<Node2D>();
         var areas = GetChildren()
-        .Where(child => child is MapArea)
+        .Where(child => child.IsInGroup("MapArea"))
         .Where(child => ((MapArea)child).IsActive);
+        GD.Print(GetChildren().Count);
         foreach (var child in areas)
         {
             var area = (MapArea) child;
