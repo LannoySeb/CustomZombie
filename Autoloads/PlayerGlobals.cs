@@ -4,7 +4,7 @@ using System;
 public partial class PlayerGlobals : Node
 {
     public int Score {get;private set;} =0;
-    public int ScoreLeft {get;private set;} = 0;
+    public int ScoreLeft {get;private set;} = 500;
 
     public void AddScore(int score){
         Score += score;

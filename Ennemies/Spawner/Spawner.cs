@@ -59,16 +59,13 @@ public partial class Spawner : Node2D
         var areas = GetChildren()
         .Where(child => child.IsInGroup("MapArea"))
         .Where(child => ((MapArea)child).IsActive);
-        GD.Print(GetChildren().Count);
         foreach (var child in areas)
         {
             var area = (MapArea) child;
             spawners.AddRange( area.SpawnLocations);
-        GD.Print(spawners.Count);
 
         }
-        
-
+    
         SpawnerLocations = spawners;
     }
 }

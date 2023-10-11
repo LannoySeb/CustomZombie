@@ -263,9 +263,9 @@ parameters/Walk/blend_position = Vector2(-0.0973451, 0.287912)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 3
-avoidance_enabled = true
 avoidance_layers = 3
 avoidance_mask = 3
+debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.8
