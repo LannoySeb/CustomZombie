@@ -1,8 +1,11 @@
 using Godot;
 using System;
+using System.IO;
 
 public partial class Log : InteractablesBase
 {
+        [Export]
+        private NavigationRegion2D PathOpened{get;set;}
         public override void _Ready()
         {
                 base._Ready();
@@ -29,7 +32,13 @@ public partial class Log : InteractablesBase
         {
                 if (PlayerGlobals.CanPay(Price))
                 {
+                        if (!Area.IsOpen)
+                        {
+                                Area.IsOpen = true;
+                                Area.IsActive = true;
+                        }
                         PlayerGlobals.SpendPoints(Price);
+                        PathOpened.Enabled = true;
                         QueueFree();
                 }
                 else
