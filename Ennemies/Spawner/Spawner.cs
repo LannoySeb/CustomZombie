@@ -35,7 +35,7 @@ public partial class Spawner : Node2D
 
             GetParent().AddChild(zombie);
 
-            zombie.Player = GetParent().GetNode<player_roger>("PlayerRoger");
+            zombie.Player = GetParent().GetNode<player_roger>("Player");
             zombie.Position = GetSpawn();
             zombie.SetupZombie();
             zombie._Ready();
