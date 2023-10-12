@@ -96,4 +96,11 @@ public partial class zombie : CharacterBody2D
     private void OnTimerTimeout(){
         MakePath();
     }
+
+    public void ReceiveKnockBack(Vector2 sourcePos, float knStrength){
+        var knDirection = sourcePos.DirectionTo(GlobalPosition);
+        var kn = knDirection*knStrength;
+
+        GlobalPosition += kn;
+    }
 }

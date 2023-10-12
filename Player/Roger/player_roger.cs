@@ -104,7 +104,7 @@ public partial class player_roger : CharacterBody2D
 
 		ReloadBar = GetNode<ReloadBar>("ReloadBar");
 
-		Weapon = (Pistol)AimingNode.GetNode<Node2D>("Pistol");
+		Weapon = (Knife)AimingNode.GetNode<Node2D>("Knife");
 		Weapon.SetLoader(ReloadBar);
 		AnimationTree.Set("parameters/Idle/blend_position",StartingDirection);
 

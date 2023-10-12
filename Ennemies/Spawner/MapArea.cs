@@ -29,9 +29,7 @@ public partial class MapArea : Area2D
         .Cast<InteractablesBase>()
         .ToList();
 
-        GD.Print(Name + " door count" + Doors.Count);
         IsOpen = Doors.Count == 0;
-        GD.Print(IsOpen);
     }
 
     public void OnBodyEntered(Node2D body)
@@ -39,7 +37,6 @@ public partial class MapArea : Area2D
 
         if (body.IsInGroup("Player") && IsOpen)
         {
-            GD.Print(Name + " Area Active");
             IsActive = true;
         }
     }
@@ -48,8 +45,6 @@ public partial class MapArea : Area2D
     {
         if (body.IsInGroup("Player"))
         {
-            GD.Print("Area Inactive");
-
             IsActive = false;
         }
     }
