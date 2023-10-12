@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bik7y7s1lm2ho"]
+
+[ext_resource type="Script" path="res://Weapon/Mele/Knife.cs" id="1_gfbae"]
+[ext_resource type="Texture2D" uid="uid://sxtn1a6rx76u" path="res://Assets/Weapon/Mele/Knife.png" id="1_vftsb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mp30b"]
+radius = 2.0
+height = 18.0
+
+[node name="Knife" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_gfbae")
+
+[node name="Skin" type="Sprite2D" parent="."]
+texture = ExtResource("1_vftsb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mp30b")
+
+[node name="AimingNode" type="Marker2D" parent="."]
+position = Vector2(10, 1)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

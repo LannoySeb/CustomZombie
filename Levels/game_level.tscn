@@ -719,6 +719,7 @@ layer_1/tile_data = PackedInt32Array(196600, 131075, 1, 196603, 3, 1, 196602, 13
 visible = true
 
 [node name="Docks" parent="Spawner" node_paths=PackedStringArray("Area") groups=["MapArea"] instance=ExtResource("8_ladgj")]
+visible = false
 collision_layer = 2
 collision_mask = 2
 Area = NodePath("CollisionShape2D")
@@ -755,6 +756,7 @@ navigation_polygon = SubResource("NavigationPolygon_wcava")
 enabled = false
 
 [node name="Spawn" parent="Spawner" groups=["MapArea"] instance=ExtResource("8_ladgj")]
+visible = false
 position = Vector2(459, 92)
 collision_layer = 2
 collision_mask = 2
@@ -770,6 +772,7 @@ position = Vector2(16, 60)
 position = Vector2(-639, 193)
 
 [node name="House" parent="Spawner" groups=["MapArea"] instance=ExtResource("8_ladgj")]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
