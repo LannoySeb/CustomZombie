@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3c1wur52vqkj"]
+
+[ext_resource type="Texture2D" uid="uid://dodmn65hfr6k1" path="res://Assets/Obstacles/Crates/crate.png" id="1_juy21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihrin"]
+size = Vector2(20, 23)
+
+[node name="Bush" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_juy21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 13)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ihrin")

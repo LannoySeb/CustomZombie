@@ -13,6 +13,8 @@ font_size = 10
 script = ExtResource("1_cb68l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
 texture = ExtResource("1_0qv53")
 
 [node name="Area2D" type="Area2D" parent="."]
